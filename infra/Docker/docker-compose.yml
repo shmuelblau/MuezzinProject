@@ -1,23 +1,28 @@
-version: '3.8'
+
 
 services:
 
-  # Retriever:
-  #   image: shmuelblau/retriever:2
-  #   container_name: Retriever
-  #   restart: always
-   
-  #   depends_on:
-  #     - kafka 
+  Preprocessor:
+    image: shmuelblau/preprocessor:1
+    container_name: preprocessor
+    restart: always
+    
+    depends_on:
+      - kafka
 
-  #   environment:
-  #      HOST: "kafka" 
-      
+    environment:
+       HOST: "kafka"
+       PATH_DIR: "/app/podcasts"
+       TOPIC_NAME : "Metadata_Muezzin"
+       
        
      
-  #   command: [ "python" , "main.py"]
-  #   networks:
-  #     Models:
+    command: ["python" , "main.py"]
+    volumes:
+      - C:/podcasts:/app/podcasts
+    networks:
+      MuezzinProject:
+# ------------------------------------------------------------------- 
 
 
 # ------------------------------------------------------------------- 
@@ -62,7 +67,7 @@ services:
     depends_on:
       - kafka
     networks:
-      Models:
+      MuezzinProject:
 
   kafka:
     image: apache/kafka:latest
@@ -83,7 +88,7 @@ services:
       KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
       KAFKA_AUTO_CREATE_TOPICS_ENABLE: true 
     networks:
-      Models:
+      MuezzinProject:
 # ------------------------------------------------------------------- 
 
 
@@ -99,27 +104,26 @@ services:
   #     Models:
 # ------------------------------------------------------------------- 
 
-  mongodb:
-    image: mongo:6.0
-    container_name: mongo
-    ports:
-      - "27017:27017"
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: shmuel
-      MONGO_INITDB_ROOT_PASSWORD: "1234"
-      MONGO_INITDB_DATABASE: TextFeature
-    volumes:
-      - mongo-data:/data/db
+  # mongodb:
+  #   image: mongo:6.0
+  #   container_name: mongo
+  #   ports:
+  #     - "27017:27017"
+  #   environment:
+  #     MONGO_INITDB_ROOT_USERNAME: shmuel
+  #     MONGO_INITDB_ROOT_PASSWORD: "1234"
+  #     MONGO_INITDB_DATABASE: TextFeature
+  #   volumes:
+  #     - mongo-data:/data/db
      
-    restart: unless-stopped
-    networks:
-      Models:
+  #   restart: unless-stopped
+  #   networks:
+  #     Models:
 
 # ------------------------------------------------------------------- 
 
-volumes:
-  mongo-data:
+
 
 networks:
   
-  Models:
+  MuezzinProject:

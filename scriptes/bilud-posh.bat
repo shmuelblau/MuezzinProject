@@ -1,3 +1,3 @@
-docker build -t shmuelblau/retriever:2 ../services/Retriever
-docker push shmuelblau/retriever:2
+docker build -t shmuelblau/preprocessor:1 ../services/preprocessor
+docker push shmuelblau/preprocessor:1
 
