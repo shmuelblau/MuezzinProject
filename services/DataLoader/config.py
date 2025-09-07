@@ -4,7 +4,6 @@ KAFKA_HOST = os.getenv("KAFKA_HOST" , "kafka")
 TOPIC_NAME = os.getenv("TOPIC_NAME" ,"Metadata_Muezzin")
 
 
-PATH_DIR = os.getenv("PATH_DIR" , "C:/podcasts")
 
 
 
