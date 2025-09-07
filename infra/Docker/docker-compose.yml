@@ -59,24 +59,38 @@ services:
     networks:
       MuezzinProject:
 # ------------------------------------------------------------------- 
-
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.13.4
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+    ports:
+      - "9200:9200"
+# ------------------------------------------------------------------- 
+  kibana:
+    image: docker.elastic.co/kibana/kibana:8.13.4
+    ports:
+      - "5601:5601"
+    environment:
+      - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
+    depends_on:
+      - elasticsearch
 # ------------------------------------------------------------------- 
 
-  # mongodb:
-  #   image: mongo:6.0
-  #   container_name: mongo
-  #   ports:
-  #     - "27017:27017"
-  #   environment:
-  #     MONGO_INITDB_ROOT_USERNAME: shmuel
-  #     MONGO_INITDB_ROOT_PASSWORD: "1234"
-  #     MONGO_INITDB_DATABASE: TextFeature
-  #   volumes:
-  #     - mongo-data:/data/db
+  mongodb:
+    image: mongo:6.0
+    container_name: mongo
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: shmuel
+      MONGO_INITDB_ROOT_PASSWORD: "1234"
+      MONGO_INITDB_DATABASE: Muezzin
+    
      
-  #   restart: unless-stopped
-  #   networks:
-  #     Models:
+    restart: unless-stopped
+    networks:
+      Models:
 
 # ------------------------------------------------------------------- 
 
