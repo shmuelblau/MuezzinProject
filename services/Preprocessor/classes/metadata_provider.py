@@ -30,12 +30,11 @@ class MetadataProvider:
         stats = file_path.stat()
 
         name = file_name 
+        path = path + "/" + file_name
         size:int = stats.st_size
-        creation_time = datetime.datetime.fromtimestamp(stats.st_ctime)
+        creation_time = str(datetime.datetime.fromtimestamp(stats.st_ctime))
 
-        return MetadataFile(name=name , size=size , creation_time=creation_time)
+
+        return MetadataFile(name=name , path=path , size=size , creation_time=creation_time)
         
         
-s = MetadataProvider.get_all_from_dir("C:/podcasts")
-
-print(len(s))

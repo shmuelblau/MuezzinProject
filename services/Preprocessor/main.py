@@ -6,6 +6,9 @@ import time
 
 log = get_logger()
 
+log.info(f"HOST : {HOST}")
+log.info(f"PATH_DIR : {PATH_DIR}")
+log.info(f"TOPIC_NAME : {TOPIC_NAME}")
 
 
 time.sleep(25)

@@ -7,7 +7,7 @@ class KafkaLoader:
     def __init__(self , host) -> None:
         self.producer = KafkaProducer(
                         bootstrap_servers = f'{host}:9092',
-                        value_serializer=lambda v: json.dumps(v).encode('utf-8')
+                        value_serializer=lambda v: v.encode('utf-8')
                     )
         
 
@@ -15,9 +15,10 @@ class KafkaLoader:
     def insert(self ,topic , data:list[dict]):
         try:
             log.info(f"try insert data topic:{topic}  len:{len(data)}")
-            for i in data:
+            for line in data:
                 
-                self.producer.send(topic , i )
+                line = json.dumps(line)
+                self.producer.send(topic , line)
 
             self.producer.flush()
             log.info("success insert")
