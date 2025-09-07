@@ -23,4 +23,7 @@ class DataLoader:
 
       @staticmethod
       def get_hash(data:dict) -> str:
-          return str(hash(data["name"] + data["size"]))
+          return str(hash(data["name"] ))
+      
+
+

@@ -22,7 +22,29 @@ services:
     networks:
       MuezzinProject:
 # ------------------------------------------------------------------- 
+  DataLoader:
+    image: shmuelblau/dataloader:1
+    container_name: dataloader
+    
+    depends_on:
+      - kafka
+      - elasticsearch
+      - mongodb
 
+    environment:
+       KAFKA_HOST: kafka
+       TOPIC_NAME: Metadata_Muezzin
+       CONNECTION_STRING: mongodb://shmuel:1234@mongo:27017/Muezzin?authSource=admin
+       DATABASE: Muezzin
+       ELASTICSEARCH_HOST: elasticsearch
+       ELASTICSEARCH_INDEX: metadata_muezzin
+       
+     
+    command: ["python" , "main.py"]
+    volumes:
+      - C:/podcasts:/app/podcasts
+    networks:
+      MuezzinProject:
 
 
 # ------------------------------------------------------------------- 
@@ -66,6 +88,8 @@ services:
       - xpack.security.enabled=false
     ports:
       - "9200:9200"
+    networks:
+      MuezzinProject:
 # ------------------------------------------------------------------- 
   kibana:
     image: docker.elastic.co/kibana/kibana:8.13.4
@@ -75,6 +99,8 @@ services:
       - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
     depends_on:
       - elasticsearch
+    networks:
+      MuezzinProject:
 # ------------------------------------------------------------------- 
 
   mongodb:
@@ -90,7 +116,7 @@ services:
      
     restart: unless-stopped
     networks:
-      Models:
+      MuezzinProject:
 
 # ------------------------------------------------------------------- 
 

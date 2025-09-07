@@ -2,6 +2,4 @@
 kafka-python
 pydantic
 pymongo
-elasticsearch
-
-gridfs
+elasticsearch==8.19.0

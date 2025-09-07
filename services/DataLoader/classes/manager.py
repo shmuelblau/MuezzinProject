@@ -10,7 +10,7 @@ log = get_logger()
 class Manager:
 
     @Logger
-    def __init__(self , kafka_host , topic_name , coll_name , conn_mongo , db_name , elastic_host , elastic_index ) -> None:
+    def __init__(self , kafka_host , topic_name  , conn_mongo , db_name , elastic_host , elastic_index ) -> None:
         self.set_kafka(kafka_host , topic_name)
 
         mongo:mongoDAL = mongoDAL(conn_mongo , db_name)
@@ -24,7 +24,8 @@ class Manager:
     def start_operations(self):
 
         for file in self.topic:
-            self.DataLoader.send_file(file)
+            self.DataLoader.send_file(file.value)
+            
             
 
     def set_kafka(self , kafka_host , topic_name ) -> None:

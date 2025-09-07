@@ -1,3 +1,4 @@
+import time
 from elastic_transport import ObjectApiResponse
 from elasticsearch import Elasticsearch
 from classes.logger import Logger , get_logger
@@ -8,6 +9,7 @@ class Elastic():
   
     def __init__(self , host , port = 9200) -> None:
         self.conn: Elasticsearch = self._set_conn( host , port = 9200)
+        time.sleep(25)
         log.info(f"ping : {self.conn.ping()}")
         
     
