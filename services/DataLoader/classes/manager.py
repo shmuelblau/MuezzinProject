@@ -1,4 +1,4 @@
-from classes.logger import Logger , get_logger
+from classes.logger import Logger , log
 from classes.elastic import Elastic
 from classes.kafka_reader import KafkaReader
 from classes.mongofsDAL import MongoFsDAL
@@ -6,7 +6,7 @@ from classes.data_loader import DataLoader
 from classes.elasticDAL import ElasticDAL
 
 
-log = get_logger()
+
 
 class Manager:
 

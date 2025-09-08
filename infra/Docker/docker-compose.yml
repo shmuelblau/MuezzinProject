@@ -8,6 +8,7 @@ services:
     
     depends_on:
       - kafka
+      - elasticsearch
 
     environment:
        HOST: "kafka"
@@ -26,7 +27,7 @@ services:
       
 # ------------------------------------------------------------------- 
   DataLoader:
-    image: shmuelblau/dataloader:1
+    image: shmuelblau/dataloader:3
     container_name: dataloader
     
     depends_on:

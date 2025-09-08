@@ -1,10 +1,10 @@
 
 from classes.manager import Manager
 from config import *
-from classes.logger import get_logger
+from classes.logger import log
 import time
 
-log = get_logger()
+
 
 log.info(f"HOST : {HOST}")
 log.info(f"PATH_DIR : {PATH_DIR}")
