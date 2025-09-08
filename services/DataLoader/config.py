@@ -9,7 +9,7 @@ TOPIC_NAME = os.getenv("TOPIC_NAME" ,"Metadata_Muezzin")
 
 DATABASE = os.getenv("DATABASE" , "Muezzin")
 
-CONNECTION_STRING = os.getenv("CONNECTION_STRING" ,"mongodb://shmuel:1234@mongo:27017/TextFeature?authSource=admin")
+CONNECTION_STRING = os.getenv("CONNECTION_STRING" )
 
 
 ELASTICSEARCH_HOST = os.getenv("ELASTICSEARCH_HOST" , "elasticsearch")

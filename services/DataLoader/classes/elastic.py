@@ -2,14 +2,17 @@ import time
 from elastic_transport import ObjectApiResponse
 from elasticsearch import Elasticsearch
 from classes.logger import Logger , get_logger
+from classes.singleton import singleton
 
 log = get_logger()
+
+
+@singleton
 class Elastic():
     
   
     def __init__(self , host , port = 9200) -> None:
         self.conn: Elasticsearch = self._set_conn( host , port = 9200)
-        time.sleep(25)
         log.info(f"ping : {self.conn.ping()}")
         
     
@@ -24,15 +27,4 @@ class Elastic():
     @property
     def get_conn(self) -> Elasticsearch:
         return self.conn
-    
-    
 
-    @Logger(log_start=False)
-    def insert(self , index , data:dict) -> ObjectApiResponse:
-        result = self.conn.index(index= index ,document= data)
-        self.refresh()
-        return result
-    
-    @Logger(log_start=False)
-    def refresh(self ):
-        self.conn.indices.refresh()

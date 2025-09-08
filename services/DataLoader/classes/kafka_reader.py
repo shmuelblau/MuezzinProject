@@ -1,8 +1,9 @@
 
-
+from classes.singleton import singleton
 from kafka import KafkaConsumer
 import json
 
+@singleton
 class KafkaReader:
 
     def __init__(self ,kafka_host,  topic) -> None:

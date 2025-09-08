@@ -2,11 +2,11 @@ from pymongo import MongoClient
 from pymongo.database import Database
 import gridfs
 from classes.logger import get_logger , Logger
-
+from classes.singleton import singleton
 log = get_logger()
 
-
-class mongoDAL:
+@singleton
+class MongoFsDAL:
     def __init__(self ,connection_string  , db_name ) -> None:
 
          self.conn = MongoClient(connection_string)
