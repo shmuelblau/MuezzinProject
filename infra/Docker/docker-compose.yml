@@ -21,8 +21,33 @@ services:
       - C:/podcasts:/app/podcasts
     networks:
       MuezzinProject:
-# ------------------------------------------------------------------- 
 
+
+      
+# ------------------------------------------------------------------- 
+  DataLoader:
+    image: shmuelblau/dataloader:1
+    container_name: dataloader
+    
+    depends_on:
+      - kafka
+      - elasticsearch
+      - mongodb
+
+    environment:
+       KAFKA_HOST: kafka
+       TOPIC_NAME: Metadata_Muezzin
+       CONNECTION_STRING: mongodb://shmuel:1234@mongo:27017/Muezzin?authSource=admin
+       DATABASE: Muezzin
+       ELASTICSEARCH_HOST: elasticsearch
+       ELASTICSEARCH_INDEX: metadata_muezzin
+       
+     
+    command: ["python" , "main.py"]
+    volumes:
+      - C:/podcasts:/app/podcasts
+    networks:
+      MuezzinProject:
 
 
 # ------------------------------------------------------------------- 
@@ -59,24 +84,42 @@ services:
     networks:
       MuezzinProject:
 # ------------------------------------------------------------------- 
-
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.13.4
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+    ports:
+      - "9200:9200"
+    networks:
+      MuezzinProject:
+# ------------------------------------------------------------------- 
+  kibana:
+    image: docker.elastic.co/kibana/kibana:8.13.4
+    ports:
+      - "5601:5601"
+    environment:
+      - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
+    depends_on:
+      - elasticsearch
+    networks:
+      MuezzinProject:
 # ------------------------------------------------------------------- 
 
-  # mongodb:
-  #   image: mongo:6.0
-  #   container_name: mongo
-  #   ports:
-  #     - "27017:27017"
-  #   environment:
-  #     MONGO_INITDB_ROOT_USERNAME: shmuel
-  #     MONGO_INITDB_ROOT_PASSWORD: "1234"
-  #     MONGO_INITDB_DATABASE: TextFeature
-  #   volumes:
-  #     - mongo-data:/data/db
+  mongodb:
+    image: mongo:6.0
+    container_name: mongo
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: shmuel
+      MONGO_INITDB_ROOT_PASSWORD: "1234"
+      MONGO_INITDB_DATABASE: Muezzin
+    
      
-  #   restart: unless-stopped
-  #   networks:
-  #     Models:
+    restart: unless-stopped
+    networks:
+      MuezzinProject:
 
 # ------------------------------------------------------------------- 
 

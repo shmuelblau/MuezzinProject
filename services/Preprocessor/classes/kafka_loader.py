@@ -1,7 +1,10 @@
 from kafka import KafkaProducer
 from classes.logger import get_logger
 import json
+from classes.singleton import singleton
 log = get_logger()
+
+@singleton
 class KafkaLoader:
 
     def __init__(self , host) -> None:
