@@ -1,10 +1,13 @@
 
 from classes.manager import Manager
 from config import *
-from classes.logger import get_logger
-import time
+from classes.logger import log
 
-log = get_logger()
+
+log.info(log.handlers)
+
+
+
 
 log.info(f"HOST : {KAFKA_HOST}")
 log.info(f"TOPIC_NAME : {TOPIC_NAME}")
@@ -15,7 +18,7 @@ log.info(f"ELASTICSEARCH_INDEX : {ELASTICSEARCH_INDEX}")
 
 
 
-time.sleep(25)
+
 log.info("start")
 
 manager = Manager(

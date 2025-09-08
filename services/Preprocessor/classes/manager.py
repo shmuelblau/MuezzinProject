@@ -1,7 +1,7 @@
-from classes.logger import Logger , get_logger
+from classes.logger import Logger , log
 from classes.kafka_loader import KafkaLoader
 from classes.metadata_provider import MetadataProvider
-log = get_logger()
+
 
 class Manager:
     

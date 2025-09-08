@@ -6,9 +6,10 @@ services:
     image: shmuelblau/preprocessor:1
     container_name: preprocessor
     
+    
     depends_on:
-      - kafka
-
+      elasticsearch:
+        condition: service_healthy
     environment:
        HOST: "kafka"
        PATH_DIR: "/app/podcasts"
@@ -26,13 +27,13 @@ services:
       
 # ------------------------------------------------------------------- 
   DataLoader:
-    image: shmuelblau/dataloader:1
+    image: shmuelblau/dataloader:3
     container_name: dataloader
     
     depends_on:
-      - kafka
-      - elasticsearch
-      - mongodb
+      elasticsearch:
+        condition: service_healthy
+    
 
     environment:
        KAFKA_HOST: kafka
@@ -93,6 +94,13 @@ services:
       - "9200:9200"
     networks:
       MuezzinProject:
+
+    healthcheck:
+      test: ["CMD-SHELL", "curl -s http://localhost:9200/_cluster/health | grep -q '\"status\":\"green\"' || curl -s http://localhost:9200/_cluster/health | grep -q '\"status\":\"yellow\"'"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 60s 
 # ------------------------------------------------------------------- 
   kibana:
     image: docker.elastic.co/kibana/kibana:8.13.4

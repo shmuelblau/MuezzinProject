@@ -13,4 +13,6 @@ CONNECTION_STRING = os.getenv("CONNECTION_STRING" )
 
 
 ELASTICSEARCH_HOST = os.getenv("ELASTICSEARCH_HOST" , "elasticsearch")
+
 ELASTICSEARCH_INDEX = os.getenv("ELASTICSEARCH_INDEX" , "metadata_muezzin")
+ELASTICSEARCH_LOGS_INDEX = os.getenv("ELASTICSEARCH_LOGS_INDEX" , "dataloader_muezzin_logs")

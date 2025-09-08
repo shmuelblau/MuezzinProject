@@ -1,10 +1,10 @@
 import time
 from elastic_transport import ObjectApiResponse
 from elasticsearch import Elasticsearch
-from classes.logger import Logger , get_logger
+from classes.logger import Logger , log
 from classes.singleton import singleton
 
-log = get_logger()
+
 
 
 @singleton

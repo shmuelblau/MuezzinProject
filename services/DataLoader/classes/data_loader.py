@@ -30,7 +30,7 @@ class DataLoader:
 
       
       def get_hash(self , data:dict) -> str:
-          return str(hash(data["name"] ))
+          return str(hash(data["name"] + str(int(data["size"])) ))
       
 
 

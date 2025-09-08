@@ -1,9 +1,9 @@
 from pymongo import MongoClient
 from pymongo.database import Database
 import gridfs
-from classes.logger import get_logger , Logger
+from classes.logger import log , Logger
 from classes.singleton import singleton
-log = get_logger()
+
 
 @singleton
 class MongoFsDAL:

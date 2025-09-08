@@ -8,3 +8,7 @@ TOPIC_NAME = os.getenv("TOPIC_NAME" ,"Metadata_Muezzin")
 
 
 
+ELASTICSEARCH_HOST = os.getenv("ELASTICSEARCH_HOST" , "elasticsearch")
+
+
+ELASTICSEARCH_LOGS_INDEX = os.getenv("ELASTICSEARCH_LOGS_INDEX" , "preprocessor_muezzin_logs")

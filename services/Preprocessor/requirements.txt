@@ -1,3 +1,4 @@
 pathlib
 kafka-python
 pydantic
+elasticsearch==8.19.0
