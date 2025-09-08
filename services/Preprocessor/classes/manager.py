@@ -4,7 +4,7 @@ from classes.metadata_provider import MetadataProvider
 log = get_logger()
 
 class Manager:
-
+    
     @Logger
     def __init__(self , host , path , topic) -> None:
         self.kafka_Producer = KafkaLoader(host)
@@ -13,6 +13,7 @@ class Manager:
 
     @Logger
     def start_operations(self):
+        """Extracts the information for all files and pushes it to KAFKA"""
 
         all_metadata: list[dict] = MetadataProvider.get_all_from_dir(self.dir_path)
 

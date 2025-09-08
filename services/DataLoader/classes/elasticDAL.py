@@ -7,6 +7,7 @@ from classes.singleton import singleton
 
 @singleton
 class ElasticDAL:
+    """Gets an instance of Elastic and provides input and output capabilities"""
 # ----------------------------------------------------------------------------
 
     def __init__(self , elastic:Elastic) -> None:

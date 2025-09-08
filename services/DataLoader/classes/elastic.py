@@ -9,6 +9,7 @@ log = get_logger()
 
 @singleton
 class Elastic():
+    """Basic connection to elastic"""
     
   
     def __init__(self , host , port = 9200) -> None:

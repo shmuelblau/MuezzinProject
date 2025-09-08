@@ -7,6 +7,7 @@ log = get_logger()
 
 @singleton
 class MongoFsDAL:
+    """Holds a show of GridFS ​​and allows you to insert and remove files"""
     def __init__(self ,connection_string  , db_name ) -> None:
 
          self.conn = MongoClient(connection_string)
