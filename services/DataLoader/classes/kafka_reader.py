@@ -5,6 +5,7 @@ import json
 
 @singleton
 class KafkaReader:
+    """Returns an instance of type KafkaConsumer."""
 
     def __init__(self ,kafka_host,  topic) -> None:
         self.conn = KafkaConsumer(

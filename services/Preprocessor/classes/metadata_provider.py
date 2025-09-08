@@ -7,6 +7,7 @@ class MetadataProvider:
 
     @staticmethod
     def get_all_from_dir(path) ->list[dict]:
+        """Accepts a path to a folder and returns a detailed description of all the files within it."""
 
         directory_path = Path(path)
         result : list[dict] = []

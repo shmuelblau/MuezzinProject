@@ -6,6 +6,7 @@ log = get_logger()
 
 @singleton
 class KafkaLoader:
+    """Holds an instance of KafkaProducer and provides a function to insert many data at once"""
 
     def __init__(self , host) -> None:
         self.producer = KafkaProducer(
