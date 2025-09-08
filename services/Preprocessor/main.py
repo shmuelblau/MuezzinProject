@@ -2,7 +2,7 @@
 from classes.manager import Manager
 from config import *
 from classes.logger import log
-import time
+
 
 
 
@@ -11,7 +11,6 @@ log.info(f"PATH_DIR : {PATH_DIR}")
 log.info(f"TOPIC_NAME : {TOPIC_NAME}")
 
 
-time.sleep(25)
 log.info("start")
 
 manager = Manager(HOST , PATH_DIR , TOPIC_NAME)

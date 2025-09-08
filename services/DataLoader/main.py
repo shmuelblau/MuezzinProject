@@ -1,10 +1,9 @@
-import time
-time.sleep(30)
+
 from classes.manager import Manager
 from config import *
 from classes.logger import log
 
-log.info("new v")
+
 log.info(log.handlers)
 
 
