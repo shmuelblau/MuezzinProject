@@ -14,4 +14,3 @@ class WordLoader:
         
 
 
-print(WordLoader.get_words("C:/Users/user/Desktop/DATA/Projects/MuezzinProject/services/Classified/data/Less_unfriendly.txt"))

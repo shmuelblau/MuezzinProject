@@ -25,7 +25,8 @@ manager = Manager(
     elastic_host= ELASTICSEARCH_HOST ,
     elastic_index= ELASTICSEARCH_INDEX,
     kafka_host= KAFKA_HOST,
-    kafka_topic=NEW_TOPIC,
+    kafka_topic=KAFKA_TOPIC,
+    new_topic= NEW_TOPIC
     )
 
 

@@ -54,7 +54,7 @@ class ElasticDAL:
 # ----------------------------------------------------------------------------
     @staticmethod
     def build_update_bulk(index , id , data:dict)-> list:
-        result = list([{'_op_type': 'update', '_index': index, '_id': id , 'doc': {field : valou}} for field , valou in data])
+        result = list([{'_op_type': 'update', '_index': index, '_id': id , 'doc': {field : valou}} for field , valou in data.items()])
         
         return result
 

@@ -13,4 +13,4 @@ ELASTICSEARCH_LOGS_INDEX = os.getenv("ELASTICSEARCH_LOGS_INDEX" , "classified_mu
 
 KAFKA_HOST = os.getenv("KAFKA_HOST" , "kafka")
 
-NEW_TOPIC = os.getenv("NEW_TOPIC" ,"to_transcriber")
+NEW_TOPIC = os.getenv("NEW_TOPIC" ,"to_classify")

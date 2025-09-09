@@ -16,11 +16,14 @@ log.info("start")
 
 manager = Manager(
     elastic_host= ELASTICSEARCH_HOST ,
-    elastic_index= ELASTICSEARCH_INDEX
+    elastic_index= ELASTICSEARCH_INDEX,
+    kafka_host=KAFKA_HOST,
+    new_topic=NEW_TOPIC
+
     
     )
 
 
 
-
+manager.start_operations()
 
