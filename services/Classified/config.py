@@ -1,9 +1,9 @@
 import os 
 
 
-DATABASE = os.getenv("DATABASE" , "Muezzin")
+PATH_LESS = os.getenv("PATH_LESS" ,"C:/Users/user/Desktop/DATA/Projects/MuezzinProject/services/Classified/data/Less_unfriendly.txt") 
+PATH_VERY = os.getenv("PATH_VERY" ,"C:/Users/user/Desktop/DATA/Projects/MuezzinProject/services/Classified/data/Very_unfriendly.txt") 
 
-CONNECTION_STRING = os.getenv("CONNECTION_STRING" )
 
 
 ELASTICSEARCH_HOST = os.getenv("ELASTICSEARCH_HOST" , "elasticsearch")

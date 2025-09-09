@@ -23,7 +23,7 @@ class ElasticDAL:
     
 # ----------------------------------------------------------------------------
     @Logger
-    def get_id_by_field(self , index , field , value)-> str:
+    def get_id_by_field(self , index , field , value )-> str:
         result = self.search( index ,{"query": {"match": {field:value}}})
         return result[0]["_id"]
 # ----------------------------------------------------------------------------

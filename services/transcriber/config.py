@@ -2,7 +2,9 @@ import os
 
 
 
+KAFKA_HOST = os.getenv("KAFKA_HOST" , "kafka")
 
+NEW_TOPIC = os.getenv("NEW_TOPIC" ,"to_classify")
 
 
 DATABASE = os.getenv("DATABASE" , "Muezzin")
