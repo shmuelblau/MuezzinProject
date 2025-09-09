@@ -24,6 +24,7 @@ log.info("start")
 manager = Manager(
     kafka_host=KAFKA_HOST ,
     topic_name=TOPIC_NAME ,
+    new_topic=NEW_TOPIC,
     conn_mongo=CONNECTION_STRING ,
     db_name=DATABASE ,
     elastic_host=ELASTICSEARCH_HOST ,

@@ -5,7 +5,7 @@ from classes.logger import Logger
 from classes.elasticDAL import ElasticDAL
 from typing import BinaryIO
 import io
-@singleton
+
 class Transcriber:
       
       model = WhisperModel("base")

@@ -7,19 +7,21 @@ from classes.transcriber import  Transcriber
 from classes.elasticDAL import ElasticDAL
 from typing import BinaryIO
 
+from classes.kafka_reader import KafkaReader
+
 
 
 class Manager:
 
     @Logger
-    def __init__(self , conn_mongo , db_name , elastic_host , elastic_index ) -> None:
+    def __init__(self , conn_mongo , db_name , elastic_host , elastic_index ,kafka_host , kafka_topic ) -> None:
         """Receives all the necessary knowledge and produces needed performances"""
         
         self.mongo:MongoFsDAL = MongoFsDAL(conn_mongo , db_name)
         elastic:Elastic = Elastic(elastic_host)
-        self.elasticdal = ElasticDAL(elastic)
+        self.elasticdal:ElasticDAL = ElasticDAL(elastic)
         self.elastic_index = elastic_index
-
+        self.kafkareader:KafkaReader = KafkaReader(kafka_host=kafka_host , topic=kafka_topic)
        
 
        
@@ -29,31 +31,29 @@ class Manager:
     @Logger
     def start_operations(self):
 
-        matadata_list = self.elasticdal.get_all_from_index(self.elastic_index)
+        for new_file in self.kafkareader.get_conn:
+            unique_id = new_file.value["unique_id"]
+            text = self.get_text_according_to_unique_id(unique_id)
+            self.insert_text_to_elastic(unique_id=unique_id , text=text)
 
-        data_with_text = self.get_all_text(matadata_list)
-        bulk_list = ElasticDAL.build_update_bulk(self.elastic_index , "text" , data_with_text  )
-        self.elasticdal.insert_bulk(bulk_list)
 
-
-            
-
-    def get_all_text(self ,matadata_list ):
-        result:list[dict] = []
-        for matadata in matadata_list:
-            text = self.get_text_according_to_unique_id(matadata['_source']["unique_id"])
-            result.append({"_id" : matadata["_id"] , "text":text } )
-        return result
-
-    
+    @Logger(log_start=False)
     def get_text_according_to_unique_id(self , unique_id) -> str:
-        file:gridfs.GridOut = self.mongo.get_one(unique_id)
-
-        text = Transcriber.get_text(file.read())
+        file = self.mongo.get_one(unique_id)
+        by_file:bytes = file.read()
+        text = Transcriber.get_text(by_file)
 
         return text
 
+    @Logger(log_start=False)
+    def insert_text_to_elastic(self , unique_id , text):
 
+        elastic_id = self.elasticdal.get_id_by_field(self.elastic_index , "unique_id" , unique_id)
+        bulk:list = self.elasticdal.build_update_bulk(index = self.elastic_index , field_name= "text" , data=[{"_id" :elastic_id , "text" : text }] )
+        self.elasticdal.insert_bulk(bulk)
+
+            
+        
             
             
 

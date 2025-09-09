@@ -27,7 +27,7 @@ services:
       
 # ------------------------------------------------------------------- 
   DataLoader:
-    image: shmuelblau/dataloader:3
+    image: shmuelblau/dataloader:1
     container_name: dataloader
     
     depends_on:
@@ -49,6 +49,28 @@ services:
       - C:/podcasts:/app/podcasts
     networks:
       MuezzinProject:
+
+  # ------------------------------------------------------------------- 
+  Transcriber:
+    image: shmuelblau/transcriber:1
+    container_name: transcriber
+    
+    depends_on:
+      elasticsearch:
+        condition: service_healthy
+    
+
+    environment:
+       CONNECTION_STRING: mongodb://shmuel:1234@mongo:27017/Muezzin?authSource=admin
+       DATABASE: Muezzin
+       ELASTICSEARCH_HOST: elasticsearch
+       ELASTICSEARCH_INDEX: metadata_muezzin
+       
+    command: ["python" , "main.py"]
+    
+    networks:
+      MuezzinProject:
+
 
 
 # ------------------------------------------------------------------- 
