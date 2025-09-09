@@ -9,7 +9,7 @@ PATH_VERY = os.getenv("PATH_VERY" ,"C:/Users/user/Desktop/DATA/Projects/MuezzinP
 ELASTICSEARCH_HOST = os.getenv("ELASTICSEARCH_HOST" , "elasticsearch")
 
 ELASTICSEARCH_INDEX = os.getenv("ELASTICSEARCH_INDEX" , "metadata_muezzin")
-ELASTICSEARCH_LOGS_INDEX = os.getenv("ELASTICSEARCH_LOGS_INDEX" , "transcriber_muezzin_logs")
+ELASTICSEARCH_LOGS_INDEX = os.getenv("ELASTICSEARCH_LOGS_INDEX" , "classified_muezzin_logs")
 
 KAFKA_HOST = os.getenv("KAFKA_HOST" , "kafka")
 

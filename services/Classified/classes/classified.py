@@ -4,6 +4,8 @@ class Classified:
     very_unfriendly = [word.lower() for word in WordLoader.get_words(PATH_VERY)]
     less_unfriendly = [word.lower() for word in WordLoader.get_words(PATH_LESS)]
     words_len = len(very_unfriendly) +( len(less_unfriendly)//2 )
+    line_none = 2 
+    line_medium = 5
 
     @staticmethod
     def get_percent(text:str) -> int:
@@ -28,16 +30,25 @@ class Classified:
     
 
     @staticmethod    
-    def get_is_bds(int)-> bool:
-        return True
+    def get_is_bds(num:int)-> bool:
+        return num > Classified.line_none
+        
     
 
     @staticmethod
-    def get_threat_level(int) -> str:
-        return ""
+    def get_threat_level(num:int ) -> str:
+        result =  "high" if  num > Classified.line_medium  else "medium" if num > Classified.line_none else "none"
+        return result
     
     @staticmethod
-    def get_all_farams(str) -> dict:
-        return{}
+    def get_all_farams(text:str) -> dict:
+        percent = Classified.get_percent(text)
+        result = {
+            "bds_percent" : percent ,
+            "is_bds":Classified.get_is_bds(percent) ,
+            "bds_threat_level" : Classified.get_threat_level(percent)
+        }
+
+        return result
     
 

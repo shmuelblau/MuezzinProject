@@ -30,7 +30,7 @@ class Manager:
     def start_operations(self):
         for new_file in self.kafkareader.get_conn:
             unique_id = new_file.value["unique_id"]
-            doc = self.elasticdal.search(self.elastic_index , {})
+            doc = self.elasticdal.search(self.elastic_index , {"query": {"match": {"unique_id":unique_id}}})
             text = doc[0]["_source"]["text"]
             id = doc[0]["_id"]
             all_farams:dict = Classified.get_all_farams(text)
@@ -45,7 +45,9 @@ class Manager:
 
     @Logger       
     def add_to_elastic(self , index , id , data:dict):
-        pass
+        bulk = self.elasticdal.build_update_bulk(index , id , data )
+        self.elasticdal.insert_bulk(bulk)
+        
             
             
 
