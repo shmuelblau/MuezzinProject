@@ -45,19 +45,19 @@ class ElasticDAL:
         result = self.conn.index(index= index ,document= data)
         self.refresh()
         return result
-# ----------------------------------------------------------------------------    
+# ----------------------------------------------------------------------------   
     @Logger
     def insert_bulk(self  , data:list):
         bulk(self.conn, data)
         self.refresh()
-# ----------------------------------------------------------------------------
 
+# ----------------------------------------------------------------------------
     @staticmethod
     def build_update_bulk(index ,field_name , data:list[dict])-> list:
         result = list([{'_op_type': 'update', '_index': index, '_id': i['_id'] , 'doc': {field_name: i['text']}} for i in data])
         
         return result
-# ----------------------------------------------------------------------------
+
     @Logger(log_start=False)
     def refresh(self ):
         self.conn.indices.refresh()

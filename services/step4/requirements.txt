@@ -1,0 +1,5 @@
+pydantic
+faster_whisper
+pymongo
+elasticsearch==8.19.0
+kafka-python

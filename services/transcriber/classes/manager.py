@@ -1,11 +1,9 @@
-import io
-import gridfs
 from classes.logger import Logger , log
 from classes.elastic import Elastic
 from classes.mongofsDAL import MongoFsDAL
 from classes.transcriber import  Transcriber
 from classes.elasticDAL import ElasticDAL
-from typing import BinaryIO
+
 
 from classes.kafka_reader import KafkaReader
 
