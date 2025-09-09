@@ -1,9 +1,4 @@
 from faster_whisper import WhisperModel
-from classes.mongofsDAL import MongoFsDAL
-from classes.singleton import singleton
-from classes.logger import Logger
-from classes.elasticDAL import ElasticDAL
-from typing import BinaryIO
 import io
 
 class Transcriber:
