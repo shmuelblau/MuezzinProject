@@ -72,6 +72,28 @@ services:
       MuezzinProject:
 
 
+   # ------------------------------------------------------------------- 
+  Classified:
+    image: shmuelblau/classified:1
+    container_name: classified
+    
+    depends_on:
+      elasticsearch:
+        condition: service_healthy
+    
+
+    environment:
+       PATH_VERY: "/app/data/Very_unfriendly.txt"
+       PATH_LESS: "/app/data/Less_unfriendly.txt"
+       ELASTICSEARCH_HOST: elasticsearch
+       ELASTICSEARCH_INDEX: metadata_muezzin
+       
+    command: ["python" , "main.py"]
+    
+    networks:
+      MuezzinProject:
+
+
 
 # ------------------------------------------------------------------- 
 

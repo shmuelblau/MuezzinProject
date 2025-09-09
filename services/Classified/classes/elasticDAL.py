@@ -23,7 +23,7 @@ class ElasticDAL:
     
 # ----------------------------------------------------------------------------
     @Logger
-    def get_id_by_field(self , index , field , value)-> str:
+    def get_id_by_field(self , index , field , value )-> str:
         result = self.search( index ,{"query": {"match": {field:value}}})
         return result[0]["_id"]
 # ----------------------------------------------------------------------------
@@ -53,8 +53,8 @@ class ElasticDAL:
 
 # ----------------------------------------------------------------------------
     @staticmethod
-    def build_update_bulk(index ,field_name , data:list[dict])-> list:
-        result = list([{'_op_type': 'update', '_index': index, '_id': i['_id'] , 'doc': {field_name: i['text']}} for i in data])
+    def build_update_bulk(index , id , data:dict)-> list:
+        result = list([{'_op_type': 'update', '_index': index, '_id': id , 'doc': {field : valou}} for field , valou in data.items()])
         
         return result
 
