@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: Transcriber
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: Transcriber
+  template:
+    metadata:
+      labels:
+        app: Transcriber
+    spec:
+      containers:
+        - name: Transcriber
+          image: shmuelblau/transcriber:1
+          
+          command: ["python" , "main.py"]
+          
+
+
+      

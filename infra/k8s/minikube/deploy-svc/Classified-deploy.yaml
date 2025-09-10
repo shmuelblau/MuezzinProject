@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: Classified
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: Classified
+  template:
+    metadata:
+      labels:
+        app: Classified
+    spec:
+      containers:
+        - name: Classified
+          image: shmuelblau/classified:1
+          
+          command: ["python" , "main.py"]
+          
+
+          
+
+      

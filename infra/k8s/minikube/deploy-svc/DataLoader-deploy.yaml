@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: Preprocessor
+  name: DataLoader
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: Preprocessor
+      app: DataLoader
   template:
     metadata:
       labels:
-        app: Preprocessor
+        app: DataLoader
     spec:
       containers:
-        - name: Preprocessor
-          image: shmuelblau/preprocessor:1
+        - name: DataLoader
+          image: shmuelblau/dataloader:1
           
           command: ["python" , "main.py"]
           
