@@ -17,15 +17,21 @@ class ElasticDAL:
 
 # ----------------------------------------------------------------------------
 
+    @Logger
+    def get_all_by_field(self , index , field , value)-> list[dict]:
+        result = self.search( index ,{"query": {"match": {field:value}}})
+        return result 
+# ----------------------------------------------------------------------------
+
     @property
     def get_conn(self) -> Elasticsearch:
         return self.conn
     
 # ----------------------------------------------------------------------------
     @Logger
-    def get_all_by_field(self , index , field , value)-> list[dict]:
+    def get_id_by_field(self , index , field , value)-> str:
         result = self.search( index ,{"query": {"match": {field:value}}})
-        return result 
+        return result[0]["_id"]
 # ----------------------------------------------------------------------------
 
 

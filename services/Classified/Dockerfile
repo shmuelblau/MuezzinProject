@@ -4,10 +4,13 @@ FROM python:3.11-slim
 
 WORKDIR /app
 
-COPY requirements.txt .
+COPY services/Classifierd/requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY . .
+COPY services/Classifierd .
+COPY utils/decoretors /app/classes
+COPY utils/elastic /app/classes
+
 
 
 
