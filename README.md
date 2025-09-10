@@ -27,7 +27,7 @@ open cmd in path MuezzinProject/infra/Docker and run docker compose up .
 
 
 
-Information regarding decision-making is in the attached file (for Hebrew speakers..) 
+### Information regarding decision-making is in the attached file (for Hebrew speakers..) 
 
 
 `

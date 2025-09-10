@@ -5,7 +5,7 @@ class Classified:
     less_unfriendly = [word.lower() for word in WordLoader.get_words(PATH_LESS)]
     words_len = len(very_unfriendly) +( len(less_unfriendly)//2 )
     line_none = 10 
-    line_medium = 50
+    line_medium = 30
 
     @staticmethod
     def get_percent(text:str) -> int:

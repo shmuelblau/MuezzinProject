@@ -2,7 +2,7 @@
 from classes.manager import Manager
 from config import *
 from classes.logger import log
-
+import time
 
 log.info(log.handlers)
 
@@ -20,7 +20,7 @@ log.info(f"ELASTICSEARCH_INDEX : {ELASTICSEARCH_INDEX}")
 
 
 log.info("start")
-
+time.sleep(25)
 manager = Manager(
     kafka_host=KAFKA_HOST ,
     topic_name=TOPIC_NAME ,

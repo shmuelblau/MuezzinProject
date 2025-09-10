@@ -1,0 +1,4 @@
+pydantic
+elasticsearch==8.19.0
+uvicorn
+fastapi
