@@ -12,6 +12,7 @@ jobs:
       matrix:
         
         image:
+        
           - name: preprocessor
             dockerfile: ./services/Preprocessor/Dockerfile
             context: ./services/Preprocessor
