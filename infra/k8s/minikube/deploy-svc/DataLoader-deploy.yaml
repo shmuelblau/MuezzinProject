@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: DataLoader
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: DataLoader
+  template:
+    metadata:
+      labels:
+        app: DataLoader
+    spec:
+      containers:
+        - name: DataLoader
+          image: shmuelblau/dataloader:1
+          
+          command: ["python" , "main.py"]
+          
+
+          volumeMounts:
+            - mountPath: /app/podcasts
+              name: podcasts
+
+      volumes:
+        - name: podcasts
+          persistentVolumeClaim:
+              claimName: podcasts-pvc
+
+      

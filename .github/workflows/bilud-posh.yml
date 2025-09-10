@@ -12,7 +12,7 @@ jobs:
       matrix:
         
         image:
-
+         # There is an error, you need to check the redirects.
           - name: preprocessor
             dockerfile: services/Preprocessor/Dockerfile
             context: services/Preprocessor

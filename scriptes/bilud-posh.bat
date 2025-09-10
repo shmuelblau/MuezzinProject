@@ -9,3 +9,6 @@ docker push shmuelblau/transcriber:1
 
 docker build -t shmuelblau/classified:1 ../services/Classified
 docker push shmuelblau/classified:1
+
+docker build -t shmuelblau/dataretrieval:1 ../services/DataRetrieval
+docker push shmuelblau/dataretrieval:1
