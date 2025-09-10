@@ -1,6 +1,10 @@
 from classes.word_loader import WordLoader
 from config import *
 class Classified:
+    """Contains static methods that can accept text and display 3 new fields for
+      it with informationabout the dangers related to the words it extracts from a file."""
+    
+
     very_unfriendly = [word.lower() for word in WordLoader.get_words(PATH_VERY)]
     less_unfriendly = [word.lower() for word in WordLoader.get_words(PATH_LESS)]
     words_len = len(very_unfriendly) +( len(less_unfriendly)//2 )
@@ -9,6 +13,7 @@ class Classified:
 
     @staticmethod
     def get_percent(text:str) -> int:
+        
         text = text.lower()
         text_len = len(text.split())
         count = 0

@@ -4,7 +4,7 @@ Over the past few years, Israeli security forces have faced complex challenges i
 
 For this purpose, we have developed a project that will help detect dangerous content and provide advance warning.
 
-## 🔹services
+## services & flow
 
 - `Preprocessor` - Reads the information and passes it on to Kafka
 - `DataLoader`  - Receives information from Kafka and publishes it to Elastic and the file to Mongo

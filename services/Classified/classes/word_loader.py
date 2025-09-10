@@ -2,6 +2,7 @@ import base64
 class WordLoader:
     @staticmethod
     def get_words(path)->list[str]:
+        """Extracts a string from a file, removes the encoding, and returns it as a list."""
         encoded_string =""
         with open(path , 'r') as f:
             encoded_string = f.readline()

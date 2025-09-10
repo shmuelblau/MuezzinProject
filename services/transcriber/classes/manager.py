@@ -29,6 +29,8 @@ class Manager:
 
     @Logger
     def start_operations(self):
+        """Subscribes to Kafka and for each message that arrives, extracts the audio file,
+          transcribes it, puts it into Elastic and publishes it when finished in Kafka."""
 
         for new_file in self.kafkareader.get_conn:
             unique_id = new_file.value["unique_id"]

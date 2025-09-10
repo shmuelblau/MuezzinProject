@@ -26,6 +26,8 @@ class Manager:
 
     @Logger
     def start_operations(self):
+        """Subscribes to Kafka and for each message it retrieves the text field, obtains new fields and inserts"""
+        
         for new_file in self.kafkareader.get_conn:
             unique_id = new_file.value["unique_id"]
             doc = self.elasticdal.search(self.elastic_index , {"query": {"match": {"unique_id":unique_id}}})
