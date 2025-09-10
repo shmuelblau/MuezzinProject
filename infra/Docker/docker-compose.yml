@@ -83,8 +83,7 @@ services:
     
 
     environment:
-       PATH_VERY: "/app/data/Very_unfriendly.txt"
-       PATH_LESS: "/app/data/Less_unfriendly.txt"
+       
        ELASTICSEARCH_HOST: elasticsearch
        ELASTICSEARCH_INDEX: metadata_muezzin
        
@@ -93,7 +92,27 @@ services:
     networks:
       MuezzinProject:
 
+  # ------------------------------------------------------------------- 
+  DataRetrieval:
+    image: shmuelblau/dataretrieval:1
+    container_name: dataretrieval
+    
+    depends_on:
+      elasticsearch:
+        condition: service_healthy
+    
 
+    environment:
+       ELASTICSEARCH_HOST: elasticsearch
+       ELASTICSEARCH_INDEX: metadata_muezzin
+       
+    command: ["uvicorn", "main:app", "--reload", "--host", "0.0.0.0", "--port", "8000"]
+    
+    ports:
+      - "8000:8000"
+
+    networks:
+      MuezzinProject:
 
 # ------------------------------------------------------------------- 
 
