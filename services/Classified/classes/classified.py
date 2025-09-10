@@ -5,7 +5,7 @@ class Classified:
     less_unfriendly = [word.lower() for word in WordLoader.get_words(PATH_LESS)]
     words_len = len(very_unfriendly) +( len(less_unfriendly)//2 )
     line_none = 10 
-    line_medium = 30
+    line_medium = 50
 
     @staticmethod
     def get_percent(text:str) -> int:
@@ -23,10 +23,10 @@ class Classified:
         if count > Classified.words_len //2 :
             count += count
 
-
-        percent = count 
-        # nead to add logic
-        return percent
+        a = text_len / 100
+        percent = count // a 
+        percent = int(percent) if percent < 100 else int(100) 
+        return percent 
     
 
     @staticmethod    
