@@ -12,26 +12,26 @@ jobs:
       matrix:
         
         image:
-        
+
           - name: preprocessor
-            dockerfile: ./services/Preprocessor/Dockerfile
-            context: ./services/Preprocessor
+            dockerfile: services/Preprocessor/Dockerfile
+            context: services/Preprocessor
             repository: shmuelblau/preprocessor
           - name: dataloader
-            dockerfile: ./services/DataLoader/Dockerfile
-            context: ./services/DataLoader
+            dockerfile: services/DataLoader/Dockerfile
+            context: services/DataLoader
             repository: shmuelblau/dataloader
           - name: transcriber
-            dockerfile: ./services/Transcriber/Dockerfile
-            context: ./services/Transcriber
+            dockerfile: services/Transcriber/Dockerfile
+            context: services/Transcriber
             repository: shmuelblau/transcriber
           - name: classified
-            dockerfile: ./services/Classified/Dockerfile
-            context: ./services/Classified
+            dockerfile: services/Classified/Dockerfile
+            context: services/Classified
             repository: shmuelblau/classified
           - name: dataretrieval
-            dockerfile: ./services/DataRetrieval/Dockerfile
-            context: ./services/DataRetrieval
+            dockerfile: services/DataRetrieval/Dockerfile
+            context: services/DataRetrieval
             repository: shmuelblau/dataretrieval
 
     steps:
