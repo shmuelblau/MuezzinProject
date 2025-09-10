@@ -6,8 +6,11 @@ For this purpose, we have developed a project that will help detect dangerous co
 
 ## 🔹services
 
-- `Preprocessor`
-- `DataLoader` 
+- `Preprocessor` - Reads the information and passes it on to Kafka
+- `DataLoader`  - Receives information from Kafka and publishes it to Elastic and the file to Mongo
+- `Transcriber` - Receives information from Kafka who is ready for transcription pulls from Mongo and publishes the elastic text
+- `Classified` - Receives from Kafka who is ready for classification, classifies and publishes back to Elastic
+- `DataRetrieval` - Publishes an API service that allows you to find information about the data
 
 
 ### 🔹to start
@@ -23,6 +26,8 @@ open cmd in path MuezzinProject/infra/Docker and run docker compose up .
 
 
 
+
+Information regarding decision-making is in the attached file (for Hebrew speakers..) 
 
 
 `
