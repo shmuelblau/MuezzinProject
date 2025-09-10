@@ -4,6 +4,11 @@ Over the past few years, Israeli security forces have faced complex challenges i
 
 For this purpose, we have developed a project that will help detect dangerous content and provide advance warning.
 
+
+# There is a new version with a new folder arrangement in Brunch utils
+
+
+
 ## services & flow
 
 - `Preprocessor` - Reads the information and passes it on to Kafka
